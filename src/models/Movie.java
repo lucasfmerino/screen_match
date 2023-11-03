@@ -1,8 +1,11 @@
 package models;
+
+import calculators.Classifiable;
+
 /**
  * Movie
  */
-public class Movie extends Title {
+public class Movie extends Title implements Classifiable{
     private String director;
 
     public void setDirector(String director) {
@@ -11,5 +14,10 @@ public class Movie extends Title {
 
     public String getDirector() {
         return director;
+    }
+
+    @Override
+    public int getRating() {
+        return (int) this.getReview()/2;
     }
 }

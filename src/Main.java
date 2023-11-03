@@ -1,4 +1,6 @@
+import calculators.RecommendationFilter;
 import calculators.TimeCalculator;
+import models.Episode;
 import models.Movie;
 import models.Series;
 
@@ -17,6 +19,12 @@ public class Main {
         } else {
             System.out.println(movie.getReview());
         }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
 
 
         // CRIANDO UMA SÉRIE
@@ -44,6 +52,34 @@ public class Main {
         timeCalculator.includeTitle(series);
 
         System.out.println("O tempo total necessário para assistir esses títulos é de %d minutos".formatted(timeCalculator.getTotalTime()));
+
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+        movie.evaluate(8.5);
+        movie.evaluate(5.5);
+        movie.evaluate(7);
+
+        RecommendationFilter filter = new RecommendationFilter();
+        filter.filters(movie);
+        System.out.println(movie.getRating());
+        System.out.println(movie.getReview());
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        Episode episode = new Episode();
+        episode.setNumber(1);
+        episode.setSeries(series);
+        episode.setViews(467);
+        
+        System.out.println(episode.getRating());
+        filter.filters(episode);
 
     }
 }
