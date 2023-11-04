@@ -1,8 +1,10 @@
 package Main;
 
 import java.util.ArrayList;
+// import java.util.Collection;
+import java.util.Collections;
 
-import models.Episode;
+// import models.Episode;
 import models.Movie;
 import models.Series;
 import models.Title;
@@ -29,6 +31,7 @@ public class MainWithLists {
         titleList.add(movie3);
         titleList.add(series);
 
+        Collections.sort(titleList);  //implementado a interface Comparable em Title
 // ---------------------- PRINTS ----------------------
 
 

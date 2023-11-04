@@ -1,6 +1,6 @@
 package models;
 
-public class Title {
+public class Title implements Comparable<Title>{
     private String name;
     private boolean includedInThePlan;
     private double review;
@@ -12,6 +12,13 @@ public class Title {
     public Title(String name, int releaseYear) {
         this.name = name;
         this.releaseYear = releaseYear;
+    }
+
+
+// IMPLEMENTANDO INTERFACE
+    @Override
+    public int compareTo(Title otherTitle) {
+        return this.getName().compareTo(otherTitle.getName());
     }
 
 
