@@ -20,4 +20,9 @@ public class Movie extends Title implements Classifiable{
     public int getRating() {
         return (int) this.getReview()/2;
     }
+
+    @Override
+    public String toString() {
+        return "Filme: " + this.getName() + " (" + this.getReleaseYear() + ")";
+    }
 }
