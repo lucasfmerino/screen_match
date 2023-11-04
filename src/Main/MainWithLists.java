@@ -4,6 +4,7 @@ import java.util.ArrayList;
 // import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 // import models.Episode;
 import models.Movie;
@@ -26,7 +27,7 @@ public class MainWithLists {
 
 
 // ---------------------- LIST ISNTANCES---------------------- 
-        ArrayList<Title> titleList = new ArrayList<>();
+        List<Title> titleList = new ArrayList<>();
         titleList.add(movie);
         titleList.add(movie2);
         titleList.add(movie3);
