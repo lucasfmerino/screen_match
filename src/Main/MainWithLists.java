@@ -3,6 +3,7 @@ package Main;
 import java.util.ArrayList;
 // import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 // import models.Episode;
 import models.Movie;
@@ -31,7 +32,9 @@ public class MainWithLists {
         titleList.add(movie3);
         titleList.add(series);
 
-        Collections.sort(titleList);  //implementado a interface Comparable em Title
+
+
+
 // ---------------------- PRINTS ----------------------
 
 
@@ -45,8 +48,28 @@ public class MainWithLists {
         }
  */
 
+        // ORDENANDO COM COLLECTIONS COMPARABLE
+        Collections.sort(titleList);  //implementado a interface Comparable em Title
+
         for (Title item: titleList) {
-            System.out.println(item.getName());
+            System.out.println(item);
+            if (item instanceof Movie m && m.getRating() > 0) {
+                System.out.println("Classificação: " + m.getRatingStars());
+            }
+            System.out.println();
+        }
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+        // ORDENANDO COM COMPARATOR COMPARING
+        titleList.sort(Comparator.comparing(Title::getReleaseYear));
+
+        for (Title item: titleList) {
+            System.out.println(item);
             if (item instanceof Movie m && m.getRating() > 0) {
                 System.out.println("Classificação: " + m.getRatingStars());
             }

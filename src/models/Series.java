@@ -64,4 +64,10 @@ public class Series extends Title {
         System.out.println("Release year: " + this.getReleaseYear());
         System.out.println("Duration: " + this.getDurationInMinutes());
     }
+
+    @Override
+    public String toString() {
+        return "Serie: " + this.getName() + " (" + this.getReleaseYear() + ")";
+    }
+
 }

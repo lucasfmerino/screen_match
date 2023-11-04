@@ -43,6 +43,7 @@ public class Episode implements Classifiable {
         this.views = views;
     }
 
+    @Override
     public int getRating() {
         if (views <= 100) {
             return 0;
