@@ -10,6 +10,13 @@ public class Series extends Title {
     private boolean isConcluded;
     // private int durationInMinutes;
 
+
+// CONSTRUCTOR
+    public Series(String name, int releaseYear) {
+        super(name, releaseYear);
+    }
+
+
     public void setSeasons(int seasons) {
         this.seasons = seasons;
     }

@@ -1,3 +1,4 @@
+package Main;
 import java.util.ArrayList;
 
 import calculators.RecommendationFilter;
@@ -11,32 +12,24 @@ public class Main {
 
 
 // ---------------------- MOVIES INSTANCES ----------------------
-        Movie movie = new Movie();
-        movie.setName("O Poderoso Chefão");
-        movie.setReleaseYear(1970);
+        Movie movie = new Movie("O Poderoso Chefão", 1970);
         movie.setDurationInMinutes(180);
         movie.evaluate(8.5);
         movie.evaluate(5.5);
         movie.evaluate(7);
 
-        var movie2 = new Movie();
-        movie2.setName("Star Wars: O Império Contra-ataca");
-        movie2.setReleaseYear(1980);
+        var movie2 = new Movie("Star Wars: O Império Contra-ataca", 1980);
         movie2.setDurationInMinutes(124);
         movie2.evaluate(9.2);
 
-        Movie movie3 = new Movie();
-        movie.setName("O Senhor dos Anéis - A Sociedade do Anel");
-        movie.setReleaseYear(2002);
+        Movie movie3 = new Movie("O Senhor dos Anéis - A Sociedade do Anel", 2002);
         movie.setDurationInMinutes(178);
         movie.evaluate(9.4);
 
 
 
 // ---------------------- SERIES INSTANCES ----------------------
-        Series series = new Series();
-        series.setName("Lost");
-        series.setReleaseYear(2000);
+        Series series = new Series("Lost", 2000);
         series.setSeasons(10);
         series.setEpisodesPerSeason(10);
         series.setMinutesPerEpisode(50);

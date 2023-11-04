@@ -8,6 +8,13 @@ public class Title {
     private int numberOfreviews;
     private int durationInminutes;
 
+// CONSTRUTOR
+    public Title(String name, int releaseYear) {
+        this.name = name;
+        this.releaseYear = releaseYear;
+    }
+
+
 // MÉTODOS PARA O ATRIBUTO NOME
     public void setName(String name) {
         this.name = name;
