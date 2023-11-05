@@ -150,9 +150,6 @@ public class Main {
 
     // MAKE THE PAYMENT
     public static void makePayment(Scanner sc, CreditCard card, Purchase purchase) {
-        Boolean paymentStatus;
-
-        paymentStatus = card.creditPayment(purchase);
         purchase.getPurchaseItems().clear();
     }
 }
