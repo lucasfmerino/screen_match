@@ -1,114 +1,158 @@
 package Main;
+
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
-import calculators.RecommendationFilter;
-import calculators.TimeCalculator;
-import models.Episode;
-import models.Movie;
-import models.Series;
+import models.CreditCard;
+import models.Product;
+import models.Purchase;
 
+/**
+ * Main
+ */
 public class Main {
-    public static void main(String[] args) throws Exception {
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-// ---------------------- MOVIES INSTANCES ----------------------
-        Movie movie = new Movie("O Poderoso Chefão", 1970);
-        movie.setDurationInMinutes(180);
-        movie.evaluate(8.5);
-        movie.evaluate(5.5);
-        movie.evaluate(7);
+        // CARD INSTANCES
+        CreditCard mycard = new CreditCard(1000, 2000);
+        mycard.setHistoricHeader();
 
-        var movie2 = new Movie("Star Wars: O Império Contra-ataca", 1980);
-        movie2.setDurationInMinutes(124);
-        movie2.evaluate(9.2);
+        // PRODUCTS INSTANCES
+        Product noteBook01 = new Product("Notebook Nimbus 2000", 9000);
+        Product noteBook02 = new Product("Notebook da Xuxa", 499.99);
+        Product mouse01 = new Product("mouse ultrasonic gamerPro", 399.50);
+        Product mouse02 = new Product("ball mouse", 12.99);
+        Product keyboard01 = new Product("keyboard nextGen with glowing lights", 450);
+        Product keyboard02 = new Product("keyboard Chernobyl", 30);
 
-        Movie movie3 = new Movie("O Senhor dos Anéis - A Sociedade do Anel", 2002);
-        movie.setDurationInMinutes(178);
-        movie.evaluate(9.4);
+        // LISTS INSTANCES
+        List<Product> productsList = new ArrayList<>();
+        productsList.add(noteBook01);
+        productsList.add(noteBook02);
+        productsList.add(mouse01);
+        productsList.add(mouse02);
+        productsList.add(keyboard01);
+        productsList.add(keyboard02);
 
+        List<Product> purchaseList = new ArrayList<>();
 
+        // PURCHASES INSTANCES
+        Purchase purchaseItems = new Purchase((ArrayList<Product>) purchaseList);
 
-// ---------------------- SERIES INSTANCES ----------------------
-        Series series = new Series("Lost", 2000);
-        series.setSeasons(10);
-        series.setEpisodesPerSeason(10);
-        series.setMinutesPerEpisode(50);
+        // RUN APP
+        Boolean online = true;
 
+        while (online) {
+            System.out.println("""
+                        *******************************
 
+                            WELCOME TO THE APPSTORE
 
-// ---------------------- EPISODES INSTANCES ----------------------
-        Episode episode = new Episode();
-        episode.setNumber(1);
-        episode.setSeries(series);
-        episode.setViews(467);
+                        *******************************
 
+                        Select the option:
 
+                        1 - Go to sotre products;
 
-// ---------------------- MODELS TESTING METHODS ----------------------
-        System.out.println();
-        System.out.println();
-        System.out.println();
+                        2 - Make the payment;
 
-        movie.displaysDatasheet();
-        if (movie.getNumberOfReviews() == 0) {
-            System.out.println("O filme ainda não possui avaliações");
-        } else {
-            System.out.println(movie.getReview());
+                        3 - Cancel purchase;
+
+                        4 - View card statement;
+
+                        5 - Close;
+
+                    """);
+
+            int welcomeOption = sc.nextInt();
+            sc.nextLine();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+
+            switch (welcomeOption) {
+                case 1:
+                    displayProducts(sc, productsList, purchaseList);
+                    break;
+
+                case 2:
+                    makePayment(sc, mycard, purchaseItems);
+
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    break;
+
+                case 3:
+                    purchaseList.clear();
+                    break;
+
+                case 4:
+                    System.out.println(mycard.getHistoric());
+                    System.out.println();
+                    System.out.println();
+                    break;
+
+                case 5:
+                    System.out.println("Thank you for using our services");
+                    online = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid Operation");
+                    break;
+            }
         }
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
+    }
 
-        series.displaysDatasheet();
+    // DISPLAY PRODUCTS
+    public static void displayProducts(Scanner sc, List<Product> productsList, List<Product> purchaseList) {
+        int count = 1;
+        productsList.sort(Comparator.comparing(Product::getPrice));
+        for (Product product : productsList) {
+            System.out.println(count + "- " + product);
 
+            count++;
+        }
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        Boolean addProducts = true;
 
+        while (addProducts) {
+            System.out.println("select product code to add or \"0\" (zero) to return");
 
-// ---------------------- TIME CALCULATOR ----------------------
-        TimeCalculator timeCalculator = new TimeCalculator();
+            int productOption = sc.nextInt();
+            sc.nextLine();
+            System.out.println();
+            System.out.println();
+            System.out.println();
 
-        timeCalculator.includeTitle(movie);
-        System.out.println("O tempo total necessário para assistir esses títulos é de %d minutos".formatted(timeCalculator.getTotalTime()));
+            if (productOption > 0 && productOption <= productsList.size()) {
+                purchaseList.add(productsList.get(productOption - 1));
 
-        timeCalculator.includeTitle(series);
-        System.out.println("O tempo total necessário para assistir esses títulos é de %d minutos".formatted(timeCalculator.getTotalTime()));
+            } else if (productOption == 0) {
+                System.out.println("Check back often.");
+                for (Product product : purchaseList) {
+                    System.out.println(product);
+                }
+                addProducts = false;
+                break;
+            } else {
+                System.out.println("Sorry! Unavailabel Prodcut.");
+            }
+        }
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
+    }
 
+    // MAKE THE PAYMENT
+    public static void makePayment(Scanner sc, CreditCard card, Purchase purchase) {
+        Boolean paymentStatus;
 
-
-// ---------------------- RECOMMENDATIONS ----------------------
-        RecommendationFilter filter = new RecommendationFilter();
-
-        filter.filters(movie);
-        System.out.println(movie.getRating());
-        System.out.println(movie.getReview());
-
-        System.out.println(episode.getRating());
-        filter.filters(episode);
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
-
-
-// ---------------------- ARRAYLIST<> ----------------------
-
-        ArrayList<Movie> moviesList = new ArrayList<>();
-        moviesList.add(movie);
-        moviesList.add(movie2);
-        moviesList.add(movie3);
-
-        System.out.println("Tamanho da lista: " + moviesList.size());
-        System.out.println("Primeiro Filme: " + moviesList.get(0).getName());
-        System.out.println(moviesList);
-
+        paymentStatus = card.creditPayment(purchase);
+        purchase.getPurchaseItems().clear();
     }
 }
