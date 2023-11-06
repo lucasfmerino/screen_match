@@ -12,6 +12,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import calculators.Params;
 import models.Title;
 import models.TitleOmdb;
 
@@ -23,7 +24,7 @@ public class MainWithSearch {
         System.out.println("Which movie do you want to search for?");
         var search = sc.nextLine();
 
-        String apiPath = "https://www.omdbapi.com/?t=" + search + "&apikey=f044c729";
+        String apiPath = "https://www.omdbapi.com/?t=" + search + "&apikey=" + apiKey;
 
 
         HttpClient client = HttpClient.newHttpClient();
@@ -42,15 +43,27 @@ public class MainWithSearch {
         // Gson gson = new Gson();
         // Title searchTitle = gson.fromJson(json, Title.class);
 
+
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+
+
         TitleOmdb searchTitleOmdb = gson.fromJson(json, TitleOmdb.class);
-
         // System.out.println(searchTitleOmdb);
+        try {
+            Title searchTitle = new Title(searchTitleOmdb);
+            System.out.println(searchTitle);
+            System.out.println("Duração: " + searchTitle.getDurationInMinutes() + " min");
+        } catch (NumberFormatException e) {
+            System.out.println("Aconteceu um erro: ");
+            System.out.println(e.getMessage());
+        }
 
-        Title searchTitle = new Title(searchTitleOmdb);
-        System.out.println(searchTitle);
-        System.out.println("Duração: " + searchTitle.getDurationInMinutes() + " min");
+        System.out.println("Programa finalizou corretamente");
+
         System.out.println();
 
+        sc.close();
     }
+
+    private static String apiKey = Params.apiKey;
 }
