@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import calculators.Params;
+import exceptions.YearConversionErrorException;
 import models.Title;
 import models.TitleOmdb;
 
@@ -24,7 +25,7 @@ public class MainWithSearch {
         System.out.println("Which movie do you want to search for?");
         var search = sc.nextLine();
 
-        String apiPath = "https://www.omdbapi.com/?t=" + search + "&apikey=" + apiKey;
+        String apiPath = "https://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=" + apiKey;
 
 
         HttpClient client = HttpClient.newHttpClient();
@@ -56,6 +57,12 @@ public class MainWithSearch {
         } catch (NumberFormatException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Algum erro de argumento na busca.");
+        } catch (YearConversionErrorException e) {
+            System.out.println("Algum erro de argumento na busca.");
+        } catch (Exception e) { // Não faça isso.
+            System.out.println("Algo inesperado deu errado.");
         }
 
         System.out.println("Programa finalizou corretamente");
