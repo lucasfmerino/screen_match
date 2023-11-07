@@ -1,5 +1,7 @@
 package Main;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -54,6 +56,10 @@ public class MainWithSearch {
             Title searchTitle = new Title(searchTitleOmdb);
             System.out.println(searchTitle);
             System.out.println("Duração: " + searchTitle.getDurationInMinutes() + " min");
+
+            FileWriter searchLogs = new FileWriter("searchLogs.txt");
+            searchLogs.write(searchTitle.toString());
+            searchLogs.close();
         } catch (NumberFormatException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
