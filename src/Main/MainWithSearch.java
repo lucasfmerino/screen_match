@@ -30,17 +30,16 @@ public class MainWithSearch {
         List<Title> titles = new ArrayList<>();
 
         Gson gson = new GsonBuilder()
-        .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-        .setPrettyPrinting()
-        .create();
-
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting()
+                .create();
 
         while (!search.equalsIgnoreCase("exit")) {
 
             System.out.println("Which movie do you want to search for?");
             search = sc.nextLine();
 
-            if(search.equalsIgnoreCase("exit")) {
+            if (search.equalsIgnoreCase("exit")) {
                 break;
             }
             String apiPath = "https://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=" + apiKey;
@@ -61,7 +60,6 @@ public class MainWithSearch {
             // Gson gson = new Gson();
             // Title searchTitle = gson.fromJson(json, Title.class);
 
-            
             TitleOmdb searchTitleOmdb = gson.fromJson(json, TitleOmdb.class);
             // System.out.println(searchTitleOmdb);
             try {
@@ -72,7 +70,6 @@ public class MainWithSearch {
                 // FileWriter searchLogs = new FileWriter("searchLogs.txt");
                 // searchLogs.write(searchTitle.toString());
                 // searchLogs.close();
-
 
                 titles.add(searchTitle);
             } catch (NumberFormatException e) {
@@ -86,9 +83,7 @@ public class MainWithSearch {
                 System.out.println("Algo inesperado deu errado.");
             }
 
-
             System.out.println(titles);
-
 
             FileWriter writeList = new FileWriter("movies.json");
             writeList.write(gson.toJson(titles));
@@ -96,10 +91,12 @@ public class MainWithSearch {
 
             System.out.println("Programa finalizou corretamente");
 
-            System.out.println();
+            System.out.println('\n');
 
-            // sc.close();
+            
         }
+
+        sc.close();
     }
 
     private static String apiKey = Params.apiKey;

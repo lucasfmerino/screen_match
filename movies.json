@@ -8,22 +8,6 @@
     "DurationInminutes": 130
   },
   {
-    "Name": "Dogville",
-    "IncludedInThePlan": false,
-    "Review": 0.0,
-    "ReleaseYear": 2003,
-    "NumberOfreviews": 0,
-    "DurationInminutes": 178
-  },
-  {
-    "Name": "It",
-    "IncludedInThePlan": false,
-    "Review": 0.0,
-    "ReleaseYear": 2017,
-    "NumberOfreviews": 0,
-    "DurationInminutes": 135
-  },
-  {
     "Name": "Pok�mon: Detective Pikachu",
     "IncludedInThePlan": false,
     "Review": 0.0,
@@ -38,5 +22,21 @@
     "ReleaseYear": 2014,
     "NumberOfreviews": 0,
     "DurationInminutes": 121
+  },
+  {
+    "Name": "Dogville",
+    "IncludedInThePlan": false,
+    "Review": 0.0,
+    "ReleaseYear": 2003,
+    "NumberOfreviews": 0,
+    "DurationInminutes": 178
+  },
+  {
+    "Name": "Gran Torino",
+    "IncludedInThePlan": false,
+    "Review": 0.0,
+    "ReleaseYear": 2008,
+    "NumberOfreviews": 0,
+    "DurationInminutes": 116
   }
 ]
