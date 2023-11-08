@@ -1,9 +1,15 @@
 package models;
 
+import exceptions.YearConversionErrorException;
+
+// import com.google.gson.annotations.SerializedName; REMOVIDO DEVIDO A IMPLEMENTAÇÃO DO RECORD
+
 public class Title implements Comparable<Title>{
+    // @SerializedName("Title") REMOVIDO DEVIDO A IMPLEMENTAÇÃO DO RECORD
     private String name;
     private boolean includedInThePlan;
     private double review;
+    // @SerializedName("Year") REMOVIDO DEVIDO A IMPLEMENTAÇÃO DO RECORD
     private int releaseYear;
     private int numberOfreviews;
     private int durationInminutes;
@@ -12,6 +18,16 @@ public class Title implements Comparable<Title>{
     public Title(String name, int releaseYear) {
         this.name = name;
         this.releaseYear = releaseYear;
+    }
+
+    public Title(TitleOmdb titleOmdb) {
+        this.name = titleOmdb.title();
+
+        if(titleOmdb.year().length() > 4) {
+            throw new YearConversionErrorException("Não foi possível converter o ano, pois tem mais de quatro caracteres");
+        }
+        this.releaseYear = Integer.valueOf(titleOmdb.year());
+        this.durationInminutes = Integer.valueOf(titleOmdb.runtime().substring(0,3));
     }
 
 
@@ -89,6 +105,12 @@ public class Title implements Comparable<Title>{
         System.out.println("Movie name: " + name);
         System.out.println("Release year: " + releaseYear);
         System.out.println("Duration: " + durationInminutes);
+    }
+
+// OVERRIDE TO STRING
+    public String toString() {
+        return "(name: " + name +
+        ", Release Year: " + releaseYear + ")";
     }
 
 }
