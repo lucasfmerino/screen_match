@@ -109,8 +109,8 @@ public class Title implements Comparable<Title>{
 
 // OVERRIDE TO STRING
     public String toString() {
-        return "name: '" + name + '\'' +
-        ", Release Year: " + releaseYear;
+        return "(name: " + name +
+        ", Release Year: " + releaseYear + ")";
     }
 
 }
