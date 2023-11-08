@@ -1,6 +1,5 @@
 package Main;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -54,22 +53,14 @@ public class MainWithSearch {
                     .send(request, BodyHandlers.ofString());
 
             String json = response.body();
-            // System.out.println(json);
-
-            // Gson
-            // Gson gson = new Gson();
-            // Title searchTitle = gson.fromJson(json, Title.class);
+            ;
 
             TitleOmdb searchTitleOmdb = gson.fromJson(json, TitleOmdb.class);
-            // System.out.println(searchTitleOmdb);
+
             try {
                 Title searchTitle = new Title(searchTitleOmdb);
                 System.out.println(searchTitle);
                 System.out.println("Duração: " + searchTitle.getDurationInMinutes() + " min");
-
-                // FileWriter searchLogs = new FileWriter("searchLogs.txt");
-                // searchLogs.write(searchTitle.toString());
-                // searchLogs.close();
 
                 titles.add(searchTitle);
             } catch (NumberFormatException e) {
@@ -79,7 +70,7 @@ public class MainWithSearch {
                 System.out.println("Algum erro de argumento na busca.");
             } catch (YearConversionErrorException e) {
                 System.out.println("Algum erro de argumento na busca.");
-            } catch (Exception e) { // Não faça isso.
+            } catch (Exception e) { // Don't do this.
                 System.out.println("Algo inesperado deu errado.");
             }
 
@@ -92,10 +83,7 @@ public class MainWithSearch {
             System.out.println("Programa finalizou corretamente");
 
             System.out.println('\n');
-
-            
         }
-
         sc.close();
     }
 
